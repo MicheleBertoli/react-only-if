@@ -1,0 +1,59 @@
+{
+  "name": "react-only-if",
+  "version": "0.0.1",
+  "description": "Render a React.js component only if",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "umd"
+  ],
+  "scripts": {
+    "pretest": "npm run lint",
+    "prebuild": "npm test",
+    "prepublish": "npm run build",
+    "lint": "eslint ./src",
+    "test": "mocha --compilers js:babel-register ./src/**/*.spec.js",
+    "prebuild:dist": "rimraf ./dist",
+    "prebuild:umd": "rimraf ./umd",
+    "build:dist": "babel ./src --out-dir ./dist --ignore *.spec.js",
+    "build:umd": "webpack -p ./src ./umd/only-if.min.js",
+    "build": "npm run build:dist && npm run build:umd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicheleBertoli/react-only-if.git"
+  },
+  "keywords": [
+    "react-component"
+  ],
+  "author": "Michele Bertoli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MicheleBertoli/react-only-if/issues"
+  },
+  "homepage": "https://github.com/MicheleBertoli/react-only-if#readme",
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-register": "^6.7.2",
+    "enzyme": "^2.2.0",
+    "eslint": "^2.8.0",
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-react": "^4.3.0",
+    "mocha": "^2.4.5",
+    "react": "^15.0.1",
+    "react-addons-test-utils": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "rimraf": "^2.5.2",
+    "sinon": "^1.17.3",
+    "webpack": "^1.13.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
+  }
+}
