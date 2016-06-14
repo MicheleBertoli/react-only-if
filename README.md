@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MicheleBertoli/react-only-if.svg?branch=master)](https://travis-ci.org/MicheleBertoli/react-only-if)
+
 # React Only If
 
 Sometimes we want to check if the right data has been loaded into the props, the state or the context before rendering our [React.js](https://facebook.github.io/react/)
