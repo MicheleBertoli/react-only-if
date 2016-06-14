@@ -44,7 +44,7 @@ describe('onlyIf', () => {
   it('renders the component if the condition is true', () => {
     const DummyOnlyIf = onlyIf(Dummy, () => true);
     const wrapper = shallow(<DummyOnlyIf />);
-    assert(wrapper.contains(Dummy));
+    assert(wrapper.containsMatchingElement(Dummy));
   });
 
   it('renders the placeholder if the condition is false', () => {
