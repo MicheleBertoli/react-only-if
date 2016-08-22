@@ -1,27 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+const isStateless = (Target) => (
+  !(Target.prototype && Target.prototype.isReactComponent)
+);
+
+const wrapStateless = (Stateless) => {
+  class WrapperComponent extends Component {
+    render() {
+      return React.createElement(Stateless, this.props);
+    }
+  }
+  WrapperComponent.contextTypes = Stateless.contextTypes;
+  return WrapperComponent;
+};
 
 export default (Target, condition, Placeholder) => {
-  const renderedPlaceholder = Placeholder
-    ? React.createElement(Placeholder)
-    : null;
-
-  if (!Target.prototype.isReactComponent) {
-    const StatelessComponent = (props, context) => (
-      condition(props, context)
-        ? React.createElement(Target, props)
-        : renderedPlaceholder
-    );
-    StatelessComponent.contextTypes = Target.contextTypes;
-    return StatelessComponent;
-  }
-
-  class Component extends Target {
+  const Super = isStateless(Target) ? wrapStateless(Target) : Target;
+  class Enhanced extends Super {
     render() {
       if (condition(this.props, this.state, this.context)) {
         return super.render();
       }
-      return renderedPlaceholder;
+      return Placeholder ? React.createElement(Placeholder) : null;
     }
   }
-  return Component;
+  return Enhanced;
 };
