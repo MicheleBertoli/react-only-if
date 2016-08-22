@@ -46,7 +46,7 @@ Parameter   | Type    | Description
 ----------- | ------- | -----------
 Target      | element | The component to render when the condition is true.
 condition   | func    | The condition function. It receives props, state and context.
-Placeholder | element (optional) | The component to render when the condition is false. If nothing is passed `null` will be returned.
+Placeholder | element | (optional) The component to render when the condition is false.
 
 ## Test
 
