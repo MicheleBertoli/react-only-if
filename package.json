@@ -1,6 +1,6 @@
 {
   "name": "react-only-if",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Render a React.js component only if",
   "main": "dist/index.js",
   "files": [
