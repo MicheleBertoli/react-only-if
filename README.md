@@ -44,7 +44,7 @@ $ npm install react-only-if --save
 
 Parameter   | Type    | Description
 ----------- | ------- | -----------
-condition   | func    | The condition function. It receives props, state and context.
+condition   | func    | The condition function. It receives props, context and state.
 Placeholder | element | (optional) The component to render when the condition is false.
 
 ## Test
