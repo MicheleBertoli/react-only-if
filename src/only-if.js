@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+const getDisplayName = (Component) => (
+  Component.displayName || Component.name || 'Component'
+);
 
 const isStateless = (Target) => (
   !(Target.prototype && Target.prototype.isReactComponent)
 );
 
-const wrapStateless = (Stateless) => {
-  class WrapperComponent extends Component {
+const wrapStateless = (stateless) => {
+  class Wrapped extends React.Component {
     render() {
-      return React.createElement(Stateless, this.props);
+      return stateless(this.props, this.context);
     }
   }
-  WrapperComponent.contextTypes = Stateless.contextTypes;
-  return WrapperComponent;
+  Wrapped.contextTypes = stateless.contextTypes;
+  Wrapped.propTypes = stateless.propTypes;
+  return Wrapped;
 };
 
 export default (Target, condition, Placeholder) => {
@@ -24,5 +29,7 @@ export default (Target, condition, Placeholder) => {
       return Placeholder ? React.createElement(Placeholder) : null;
     }
   }
+  Enhanced.displayName = `OnlyIf(${getDisplayName(Target)})`;
+
   return Enhanced;
 };
