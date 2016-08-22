@@ -19,11 +19,11 @@ const wrapStateless = (stateless) => {
   return Wrapped;
 };
 
-export default (Target, condition, Placeholder) => {
+export default (condition, Placeholder) => (Target) => {
   const Super = isStateless(Target) ? wrapStateless(Target) : Target;
   class Enhanced extends Super {
     render() {
-      if (condition(this.props, this.state, this.context)) {
+      if (condition(this.props, this.context, this.state)) {
         return super.render();
       }
       return Placeholder ? React.createElement(Placeholder) : null;

@@ -38,7 +38,7 @@ const runTest = (Dummy, description) => {
     it('calls the condition function with the props', () => {
       const callback = sinon.spy();
       const props = { test: true };
-      const DummyOnlyIf = onlyIf(Dummy, callback);
+      const DummyOnlyIf = onlyIf(callback)(Dummy);
       shallow(<DummyOnlyIf {...props} />);
       assert(callback.calledWith(props));
     });
@@ -46,34 +46,34 @@ const runTest = (Dummy, description) => {
     it('calls the condition function with the state', () => {
       const callback = sinon.spy();
       const state = { test: true };
-      const DummyOnlyIf = onlyIf(Dummy, callback);
+      const DummyOnlyIf = onlyIf(callback)(Dummy);
       const wrapper = shallow(<DummyOnlyIf />);
       wrapper.setState(state);
-      assert(callback.calledWith({}, state));
+      assert(callback.calledWith({}, { test: undefined }, state));
     });
 
     it('calls the condition function with the context', () => {
       const callback = sinon.spy();
       const context = { test: true };
-      const DummyOnlyIf = onlyIf(Dummy, callback);
+      const DummyOnlyIf = onlyIf(callback)(Dummy);
       shallow(<DummyOnlyIf />, { context });
-      assert(callback.calledWith({}, null, context));
+      assert(callback.calledWith({}, context, null));
     });
 
     it('renders the component if the condition is true', () => {
-      const DummyOnlyIf = onlyIf(Dummy, () => true);
+      const DummyOnlyIf = onlyIf(() => true)(Dummy);
       const wrapper = shallow(<DummyOnlyIf />);
       assert(wrapper.containsMatchingElement(Dummy));
     });
 
     it('renders the placeholder if the condition is false', () => {
-      const DummyOnlyIf = onlyIf(Dummy, () => false, Placeholder);
+      const DummyOnlyIf = onlyIf(() => false, Placeholder)(Dummy);
       const wrapper = shallow(<DummyOnlyIf />);
       assert(wrapper.contains(<Placeholder />));
     });
 
     it('renders null if the placeholder does not exist', () => {
-      const DummyOnlyIf = onlyIf(Dummy, () => false);
+      const DummyOnlyIf = onlyIf(() => false)(Dummy);
       const wrapper = shallow(<DummyOnlyIf />);
       assert.equal(wrapper.type(), null);
     });

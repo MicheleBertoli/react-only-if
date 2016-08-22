@@ -23,7 +23,7 @@ After:
 
 ```jsx
 const UserContainer = props => <User user={props.user} />;
-const UserContainerOnlyIf = onlyIf(UserContainer, props => props.user, Spinner);
+const UserContainerOnlyIf = onlyIf(props => props.user, Spinner)(UserContainer);
 ```
 
 ## Installation
@@ -44,9 +44,9 @@ $ npm install react-only-if --save
 
 Parameter   | Type    | Description
 ----------- | ------- | -----------
-Target      | element | The component to render when the condition is true.
 condition   | func    | The condition function. It receives props, state and context.
 Placeholder | element | (optional) The component to render when the condition is false.
+
 
 ## Test
 
