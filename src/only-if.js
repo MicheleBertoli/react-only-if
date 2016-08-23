@@ -14,13 +14,16 @@ const wrapStateless = (stateless) => {
       return stateless(this.props, this.context);
     }
   }
+
   Wrapped.contextTypes = stateless.contextTypes;
   Wrapped.propTypes = stateless.propTypes;
+
   return Wrapped;
 };
 
 export default (condition, Placeholder) => (Target) => {
   const Super = isStateless(Target) ? wrapStateless(Target) : Target;
+
   class Enhanced extends Super {
     render() {
       if (condition(this.props, this.context, this.state)) {
@@ -29,6 +32,7 @@ export default (condition, Placeholder) => (Target) => {
       return Placeholder ? React.createElement(Placeholder) : null;
     }
   }
+
   Enhanced.displayName = `OnlyIf(${getDisplayName(Target)})`;
 
   return Enhanced;

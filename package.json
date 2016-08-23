@@ -1,6 +1,6 @@
 {
   "name": "react-only-if",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Render a React.js component only if",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,6 @@
     "umd"
   ],
   "scripts": {
-    "pretest": "npm run lint",
     "prebuild": "npm test",
     "prepublish": "npm run build",
     "lint": "eslint ./src",
@@ -26,7 +25,10 @@
   "keywords": [
     "react-component"
   ],
-  "author": "Michele Bertoli",
+  "authors": [
+    "Michele Bertoli",
+    "Frederik Ring"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MicheleBertoli/react-only-if/issues"
