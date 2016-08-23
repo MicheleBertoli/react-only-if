@@ -43,6 +43,14 @@ const runTest = (Dummy, description) => {
       assert(callback.calledWith(props));
     });
 
+    it('calls the condition function with the context', () => {
+      const callback = sinon.spy();
+      const context = { test: true };
+      const DummyOnlyIf = onlyIf(callback)(Dummy);
+      shallow(<DummyOnlyIf />, { context });
+      assert(callback.calledWith({}, context, null));
+    });
+
     it('calls the condition function with the state', () => {
       const callback = sinon.spy();
       const state = { test: true };
@@ -50,14 +58,6 @@ const runTest = (Dummy, description) => {
       const wrapper = shallow(<DummyOnlyIf />);
       wrapper.setState(state);
       assert(callback.calledWith({}, { test: undefined }, state));
-    });
-
-    it('calls the condition function with the context', () => {
-      const callback = sinon.spy();
-      const context = { test: true };
-      const DummyOnlyIf = onlyIf(callback)(Dummy);
-      shallow(<DummyOnlyIf />, { context });
-      assert(callback.calledWith({}, context, null));
     });
 
     it('renders the component if the condition is true', () => {
@@ -80,9 +80,8 @@ const runTest = (Dummy, description) => {
   });
 };
 
-
 describe('onlyIf', () => {
   runTest(ExtendsComponentDummy, '`extends Component` component');
   runTest(CreateClassDummy, '`createClass` component');
-  runTest(StatelessDummy, 'stateless component');
+  runTest(StatelessDummy, 'stateless functional component');
 });

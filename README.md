@@ -40,12 +40,28 @@ $ npm install react-only-if --save
 <script src="https://npmcdn.com/react-only-if/umd/only-if.min.js"></script>
 ```
 
-## Api
+## API
 
 Parameter   | Type    | Description
 ----------- | ------- | -----------
 condition   | func    | The condition function. It receives props, context and state.
 Placeholder | element | (optional) The component to render when the condition is false.
+
+### Note for version 0.x users
+
+Following a discussion in [#2](https://github.com/MicheleBertoli/react-only-if/pull/2#issuecomment-241388231),
+the library has been recently rewritten (thanks [Frederik](https://github.com/m90)).
+
+The version 1.x introduces some breaking changes in order to enforce consistency for stateless functional components
+and to make the library play nicely when using functional composition on multiple higher order components.
+
+```javascript
+// v0.x
+const ComponentOnlyIf = onlyIf(Component, (props, state, context) => {...}, Placeholder);
+
+// v1.x
+const ComponentOnlyIf = onlyIf((props, context, state) => {...}, Placeholder)(Component);
+```
 
 ## Test
 
