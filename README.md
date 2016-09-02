@@ -37,7 +37,7 @@ $ npm install react-only-if --save
 ### Umd
 
 ```html
-<script src="https://npmcdn.com/react-only-if/umd/only-if.min.js"></script>
+<script src="https://unpkg.com/react-only-if/umd/only-if.min.js"></script>
 ```
 
 ## API
