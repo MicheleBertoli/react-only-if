@@ -1,10 +1,20 @@
 {
   "extends": "airbnb",
-  "env": {
-    "mocha": true
-  },
-  "rules": {
-    "react/prefer-es6-class": 0,
-    "react/prefer-stateless-function": 0
-  },
+    "env": {
+      "mocha": true,
+      "es6": true,
+    },
+    "parserOptions": {
+      "ecmaVersion": "2017",
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true,
+        "classes": true,
+        "modules": true
+      },
+    },
+    "rules": {
+      "react/prefer-es6-class": 0,
+      "react/prefer-stateless-function": 0,
+    },
 }
