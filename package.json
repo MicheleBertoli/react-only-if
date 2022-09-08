@@ -1,6 +1,6 @@
 {
   "name": "react-only-if",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Render a React.js component only if",
   "main": "dist/index.js",
   "files": [
@@ -55,7 +55,7 @@
     "webpack": "^1.13.0"
   },
   "peerDependencies": {
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react": ">=15.0.1",
+    "react-dom": ">=15.0.1"
   }
 }
