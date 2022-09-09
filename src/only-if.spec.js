@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import React, { Component } from 'react';
 import onlyIf from './only-if';
+import createReactClass from 'create-react-class';
 
 class ExtendsComponentDummy extends Component {
   render() {
@@ -15,7 +16,7 @@ ExtendsComponentDummy.contextTypes = {
   test: React.PropTypes.bool,
 };
 
-const CreateClassDummy = React.createClass({
+const CreateClassDummy = createReactClass({
   contextTypes: {
     test: React.PropTypes.bool,
   },
