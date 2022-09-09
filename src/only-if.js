@@ -37,3 +37,10 @@ export default (condition, Placeholder) => (Target) => {
 
   return Enhanced;
 };
+
+const ConditionalRender = (condition, Placeholder) => (Target) => {
+  if (condition(this.props, this.context, this.state)) {
+    return super.render();
+  }
+  return Placeholder ? React.createElement(Placeholder) : null;
+}
